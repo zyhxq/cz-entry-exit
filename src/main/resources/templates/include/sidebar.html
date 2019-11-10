@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-3 col-md-2 sidebar" th:fragment="left">
+    <ul class="nav nav-sidebar">
+        <li><a href="unauthorizedException.html">Overview</a></li>
+        <li shiro:hasPermission="customer">
+            <a role="button" data-toggle="collapse" href="#sub-menu-user" aria-expanded="false">会员管理 <span
+                    class="caret"></span></a>
+            <div id="sub-menu-user" class="collapse">
+                <ul class="sub-menu-list">
+                    <li><a href="customer.html" th:href="@{/customer}">会员列表 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">用户等级</a></li>
+                </ul>
+            </div>
+        </li>
+        <li shiro:hasPermission="product">
+            <a role="button" data-toggle="collapse" href="#sub-menu-product" aria-expanded="false">商品管理 <span
+                    class="caret"></span></a>
+            <div id="sub-menu-product" class="collapse">
+                <ul class="sub-menu-list">
+                    <li shiro:hasPermission="customer/list"><a href="#">商品列表 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">商品分类</a></li>
+                    <li><a href="#">商品回收站</a></li>
+                </ul>
+            </div>
+        </li>
+        <li shiro:hasPermission="order">
+            <a role="button" data-toggle="collapse" href="#sub-menu-order" aria-expanded="false">订单管理 <span
+                    class="caret"></span></a>
+            <div id="sub-menu-order" class="collapse">
+                <ul class="sub-menu-list">
+                    <li><a href="#">订单列表 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#">报表</a></li>
+    </ul>
+</div>
+</body>
+</html>

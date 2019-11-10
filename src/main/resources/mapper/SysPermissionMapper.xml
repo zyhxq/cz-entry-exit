@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.springboot.mapper.SysPermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lx.springboot.entity.SysPermission">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="name" property="name" />
+        <result column="permission" property="permission" />
+        <result column="type" property="type" />
+        <result column="url" property="url" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id, name, permission, type, url, status
+    </sql>
+
+    <!--根据用户id查询权限信息-->
+    <select id="getSysPermissionByUserId" resultType="SysPermission">
+      SELECT
+            sp.*
+        FROM
+            sys_permission sp
+        JOIN sys_role_permission srp ON sp.id = srp.permission_id
+        JOIN sys_role sr ON srp.role_id = sr.id
+        JOIN sys_user_role sur ON sr.id = sur.role_id
+        JOIN sys_user su ON sur.user_id = su.id
+        WHERE
+            su.id = #{userId}
+        AND sp. STATUS = '1'
+        AND sr. STATUS = '1'
+    </select>
+</mapper>
