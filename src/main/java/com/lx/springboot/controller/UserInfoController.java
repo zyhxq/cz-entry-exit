@@ -2,31 +2,75 @@ package com.lx.springboot.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.lx.springboot.entity.Customer;
-import com.lx.springboot.service.CustomerService;
+import com.lx.springboot.entity.UserInfo;
+import com.lx.springboot.service.UserInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * <p>
- * 会员表 前端控制器
+ * 申请人 前端控制器
  * </p>
  */
+@Slf4j
 @RestController
 @RequestMapping(value = {"/userInfo"})
 public class UserInfoController {
 
     @Autowired
-    private CustomerService customerService;
+    private UserInfoService userInfoService;
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/getAllUserInfo"}, produces = "application/json;charset=UTF-8")
+    @RequestMapping(method = RequestMethod.POST, value = {"/addUserInfo"})
+    @ResponseBody
+    public String addUserInfo(@RequestBody UserInfo userInfo){
+        try{
+            log.info("UserInfoController addUserInfo userInfo:"+JSONObject.toJSONString(userInfo));
+            Integer i = userInfoService.addUserInfo(userInfo);
+        }catch(Exception e){
+            log.error("UserInfoController addUserInfo is error",e);
+        }
+        return "success";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = {"/getAllUserInfo"})
+    @ResponseBody
     public String getAllUserInfo(){
-        List<Customer> customers = customerService.getAllCustomer();
-        return JSONObject.toJSONString(customers);
+        List<UserInfo> userInfoList=null;
+        try{
+            log.info("UserInfoController getAllUserInfo start");
+            userInfoList = userInfoService.getAllUserInfo();
+        }catch(Exception e){
+            log.error("UserInfoController getAllUserInfo is error",e);
+        }
+        return JSONObject.toJSONString(userInfoList);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = {"/getUserInfoByParam"})
+    @ResponseBody
+    public List<UserInfo> getUserInfoByParam(@RequestBody UserInfo userInfo){
+        List<UserInfo> userInfoList=null;
+        try{
+            log.info("UserInfoController getAllUserInfo start");
+            userInfoList = userInfoService.getUserInfoByParam(userInfo);
+        }catch(Exception e){
+            log.error("UserInfoController getAllUserInfo is error",e);
+        }
+        return userInfoList;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = {"/deleteById"})
+    @ResponseBody
+    public String deleteById(Long id){
+        try{
+            log.info("UserInfoController deleteById start id:"+id);
+            Integer i = userInfoService.deleteById(id);
+        }catch(Exception e){
+            log.error("UserInfoController deleteById is error id:"+id,e);
+        }
+        return "success";
     }
 
 }
