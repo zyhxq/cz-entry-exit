@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lx.springboot</groupId>
-    <artifactId>springboot-shiro</artifactId>
+    <artifactId>cz-entry-exit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-shiro</name>
+    <name>cz-entry-exit</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
