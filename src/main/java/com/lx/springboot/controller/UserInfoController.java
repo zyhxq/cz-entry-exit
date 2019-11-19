@@ -23,7 +23,7 @@ public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/addUserInfo"})
+    @RequestMapping(value = {"/addUserInfo"})
     @ResponseBody
     public String addUserInfo(@RequestBody UserInfo userInfo){
         try{
