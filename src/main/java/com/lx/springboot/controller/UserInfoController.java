@@ -53,11 +53,12 @@ public class UserInfoController {
     public List<UserInfo> getUserInfoByParam(@RequestBody UserInfo userInfo){
         List<UserInfo> userInfoList=null;
         try{
-            log.info("UserInfoController getAllUserInfo start");
+            log.info("UserInfoController getUserInfoByParam start userInfo:"+JSONObject.toJSONString(userInfo));
             userInfoList = userInfoService.getUserInfoByParam(userInfo);
         }catch(Exception e){
-            log.error("UserInfoController getAllUserInfo is error",e);
+            log.error("UserInfoController getUserInfoByParam is error userInfo:"+JSONObject.toJSONString(userInfo),e);
         }
+        log.info("UserInfoController getUserInfoByParam is success");
         return userInfoList;
     }
 
