@@ -17,6 +17,8 @@ public class UserInfo implements Serializable {
      */
     private Integer   id ;
 
+    private String alipayId;
+
     private String   namef ;// '中文姓',
 
     private String   namel ;// '中文名',
@@ -215,10 +217,19 @@ public class UserInfo implements Serializable {
         this.consigneeAdress = consigneeAdress;
     }
 
+    public String getAlipayId() {
+        return alipayId;
+    }
+
+    public void setAlipayId(String alipayId) {
+        this.alipayId = alipayId;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id=" + id +
+                ", alipayId='" + alipayId + '\'' +
                 ", namef='" + namef + '\'' +
                 ", namel='" + namel + '\'' +
                 ", namepinf='" + namepinf + '\'' +

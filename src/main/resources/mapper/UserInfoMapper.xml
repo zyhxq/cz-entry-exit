@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="userInfo">
         <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="alipay_id" property="alipayId" jdbcType="DECIMAL"/>
         <result column="namef" property="namef" jdbcType="VARCHAR"/>
         <result column="namel" property="namel" jdbcType="VARCHAR"/>
         <result column="namepinf" property="namepinf" jdbcType="VARCHAR"/>
@@ -28,12 +29,12 @@
 
     <insert id="addUserInfo" parameterType="com.lx.springboot.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
         insert into user_info (
-         id,namef, namel, namepinf, namepinl,gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,
+         id,alipay_id,namef, namel, namepinf, namepinl,gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,
         contact_name,contact_phone,pick_type,consignee_name,consignee_phone,consignee_adress
         )
         values
         (
-        #{id,jdbcType=DECIMAL},#{namef,jdbcType=VARCHAR},
+        #{id,jdbcType=DECIMAL},#{alipayId,jdbcType=DECIMAL},#{namef,jdbcType=VARCHAR},
         #{namel,jdbcType=VARCHAR}, #{namepinf,jdbcType=VARCHAR}, #{namepinl,jdbcType=VARCHAR},#{gender,jdbcType=DECIMAL},#{nation,jdbcType=VARCHAR},
         #{phone,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, now(),
         now(), #{isValid,jdbcType=DECIMAL}, #{idType,jdbcType=VARCHAR},
@@ -47,7 +48,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, namef, namel, namepinf, gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,contact_name,contact_phone,pick_type,consignee_name,consignee_phone,consignee_adress
+        id, alipay_id,namef, namel, namepinf, gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,contact_name,contact_phone,pick_type,consignee_name,consignee_phone,consignee_adress
     </sql>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -76,6 +77,9 @@
     </delete>
 
     <sql id="selectUserInfoByParams_SQL">
+        <if test="alipayId != null" >
+            AND alipay_id = #{alipayId,jdbcType=VARCHAR}
+        </if>
         <if test="phone != null" >
             AND phone = #{phone,jdbcType=VARCHAR}
         </if>
