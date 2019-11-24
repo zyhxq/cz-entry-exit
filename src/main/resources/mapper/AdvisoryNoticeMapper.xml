@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.springboot.mapper.UserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="userInfo">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="alipay_id" property="alipayId" jdbcType="DECIMAL"/>
+        <result column="namef" property="namef" jdbcType="VARCHAR"/>
+        <result column="namel" property="namel" jdbcType="VARCHAR"/>
+        <result column="namepinf" property="namepinf" jdbcType="VARCHAR"/>
+        <result column="namepinl" property="namepinl" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="DECIMAL"/>
+        <result column="nation" property="nation" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_valid" property="isValid" jdbcType="DECIMAL"/>
+        <result column="id_type" property="idType" jdbcType="VARCHAR"/>
+        <result column="id_no" property="idNo" jdbcType="VARCHAR"/>
+        <result column="contact_name" property="contactName" jdbcType="VARCHAR"/>
+        <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="pick_type" property="pickType" jdbcType="VARCHAR"/>
+        <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR"/>
+        <result column="consignee_phone" property="consigneePhone" jdbcType="VARCHAR"/>
+        <result column="consignee_adress" property="consigneeAdress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="addUserInfo" parameterType="com.lx.springboot.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info (
+         id,alipay_id,namef, namel, namepinf, namepinl,gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,
+        contact_name,contact_phone,pick_type,consignee_name,consignee_phone,consignee_adress
+        )
+        values
+        (
+        #{id,jdbcType=DECIMAL},#{alipayId,jdbcType=DECIMAL},#{namef,jdbcType=VARCHAR},
+        #{namel,jdbcType=VARCHAR}, #{namepinf,jdbcType=VARCHAR}, #{namepinl,jdbcType=VARCHAR},#{gender,jdbcType=DECIMAL},#{nation,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, now(),
+        now(), #{isValid,jdbcType=DECIMAL}, #{idType,jdbcType=VARCHAR},
+        #{idNo,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR},
+        #{pickType,jdbcType=VARCHAR},
+        #{consigneeName,jdbcType=VARCHAR},
+        #{consigneePhone,jdbcType=VARCHAR},
+        #{consigneeAdress,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, alipay_id,namef, namel, namepinf, gender, nation, phone, birthday, create_time,update_time,is_valid,id_type,id_no,contact_name,contact_phone,pick_type,consignee_name,consignee_phone,consignee_adress
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info where id = #{id} and is_valid=1
+    </select>
+
+    <!--获取所有的申请人信息-->
+    <select id="getAllUserInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user_info where is_valid=1
+    </select>
+
+    <select id="getUserInfoByParam" resultMap="BaseResultMap" parameterType="userInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info where is_valid=1
+        <include refid="selectUserInfoByParams_SQL"/>
+    </select>
+
+    <!--根据会员id删除申请人信息-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from user_info where id = #{id}
+    </delete>
+
+    <sql id="selectUserInfoByParams_SQL">
+        <if test="alipayId != null" >
+            AND alipay_id = #{alipayId,jdbcType=VARCHAR}
+        </if>
+        <if test="phone != null" >
+            AND phone = #{phone,jdbcType=VARCHAR}
+        </if>
+        <if test="idNo != null" >
+            AND id_no = #{idNo,jdbcType=VARCHAR}
+        </if>
+    </sql>
+</mapper>
