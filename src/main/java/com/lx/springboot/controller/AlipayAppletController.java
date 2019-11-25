@@ -33,8 +33,8 @@ import java.util.Map;
 @RequestMapping(value = {"/alipayApplet"})
 public class AlipayAppletController {
 
-    String signVeriKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvCJAPH+gT/UNDd/OAwcPqJyYthJczbrI6zO0E6k2zY1JAcCynf+/tfEkHZktDPrYD0SEMxjlSMaOGOS6Pe+VQBG8u81fCKDF2M5Yck8Lk8IO2QAKtnL7eK1J3pCkapJP4So4ft8EVjdNM4s2Okw4pt970i8kMdWYqYS/9KlOoUtEqnU94EYbJTc9+jTPl5duVnbzoGwv4OVKf1QumhvVgamJst54bX+66S1uEc6oN7/CYjO+VzFUHiGyUco7NAcOBDcvKB+PszmDm4bVZJ4jwZBoZCQ6aXlKcJ/EbMKfSAFxqXnoS4q2hnfzVCEL22Avaq6wW8P1uZoQ6o91FRCgVQIDAQAB";
-    String decryptKey = "y4aadou8owaZ1pbxDhI7Dg==";
+    String signVeriKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkFRN+aJCedDRtznGWfj3aDAA1YpXdEOpB/AWz39GjHLSmCqSB9bidrqSpD62DOUFg3uoWSvsIQFzyCWTkrQz+oOiA6y8xiRSdYuRoh0bjUu5xeA9TPV6qURptrJh8xDFfnVpX6gub4+lp5KOLRqYPavnfzydRJehbWlbQXwsB//odW20vwEvGncYCos9kCbms0tyju/0a+FPcVeHY94w49K/wic3RFqZ8A8ZqFjtpQb8MyzsJq1DcqyU58tdsyjrlIsFA7eClfjyi1i/58nSJbldZNqDmNfGlz6cxePgvn3aHT5A3OVt80E3BcomhWZ+MdqQPpluvGWAEqbATvbqRwIDAQAB";
+    String decryptKey = "QPgSY1C8zNf9BYA2JcF7Pg==";
 
     @Autowired
     private UserInfoService userInfoService;
