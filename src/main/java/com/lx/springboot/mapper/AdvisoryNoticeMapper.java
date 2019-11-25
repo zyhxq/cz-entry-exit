@@ -1,27 +1,28 @@
 package com.lx.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lx.springboot.entity.AdvisoryNotice;
 import com.lx.springboot.entity.UserInfo;
 
 import java.util.List;
 
 /**
  * <p>
- * 申请人 Mapper 接口
+ * 咨询公告 Mapper 接口
  * </p>
  */
-public interface UserInfoMapper extends BaseMapper<UserInfo> {
+public interface AdvisoryNoticeMapper extends BaseMapper<AdvisoryNotice> {
 
-    int addUserInfo(UserInfo userInfo);
+    int addAdvisoryNotice(AdvisoryNotice advisoryNotice);
 
     /**
      * 获取所有的申请人信息
      *
      * @return
      */
-    List<UserInfo> getAllUserInfo();
+    List<AdvisoryNotice> getAllAdvisoryNotice();
 
-    List<UserInfo> getUserInfoByParam(UserInfo userInfo);
+    List<AdvisoryNotice> getAdvisoryNoticeByParam(AdvisoryNotice advisoryNotice);
 
 
     int deleteById(Long id);

@@ -1,8 +1,11 @@
 package com.lx.springboot.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lx.springboot.entity.AdvisoryNotice;
 import com.lx.springboot.entity.UserInfo;
+import com.lx.springboot.mapper.AdvisoryNoticeMapper;
 import com.lx.springboot.mapper.UserInfoMapper;
+import com.lx.springboot.service.AdvisoryNoticeService;
 import com.lx.springboot.service.UserInfoService;
 import org.springframework.stereotype.Service;
 
@@ -10,25 +13,25 @@ import java.util.List;
 
 /**
  * <p>
- * 申请人 服务实现类
+ * 咨询公告 服务实现类
  * </p>
  */
 @Service
-public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
+public class AdvisoryNoticeServiceImpl extends ServiceImpl<AdvisoryNoticeMapper, AdvisoryNotice> implements AdvisoryNoticeService {
 
     @Override
-    public int addUserInfo(UserInfo userInfo) {
-        return baseMapper.addUserInfo(userInfo);
+    public int addAdvisoryNotice(AdvisoryNotice advisoryNotice) {
+        return baseMapper.addAdvisoryNotice(advisoryNotice);
     }
 
     @Override
-    public List<UserInfo> getAllUserInfo() {
-        return baseMapper.getAllUserInfo();
+    public List<AdvisoryNotice> getAllAdvisoryNotice() {
+        return baseMapper.getAllAdvisoryNotice();
     }
 
     @Override
-    public List<UserInfo> getUserInfoByParam(UserInfo userInfo) {
-        return baseMapper.getUserInfoByParam(userInfo);
+    public List<AdvisoryNotice> getAdvisoryNoticeByParam(AdvisoryNotice advisoryNotice) {
+        return baseMapper.getAdvisoryNoticeByParam(advisoryNotice);
     }
 
     @Override

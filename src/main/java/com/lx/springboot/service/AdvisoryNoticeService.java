@@ -1,27 +1,22 @@
 package com.lx.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lx.springboot.entity.UserInfo;
+import com.lx.springboot.entity.AdvisoryNotice;
 
 import java.util.List;
 
 /**
  * <p>
- * 申请人 服务类
+ * 咨询公告 服务类
  * </p>
  */
-public interface UserInfoService extends IService<UserInfo> {
+public interface AdvisoryNoticeService extends IService<AdvisoryNotice> {
 
-    int addUserInfo(UserInfo userInfo);
+    int addAdvisoryNotice(AdvisoryNotice advisoryNotice);
 
-    /**
-     * 获取所有的申请人信息
-     *
-     * @return
-     */
-    List<UserInfo> getAllUserInfo();
+    List<AdvisoryNotice> getAllAdvisoryNotice();
 
-    List<UserInfo> getUserInfoByParam(UserInfo userInfo);
+    List<AdvisoryNotice> getAdvisoryNoticeByParam(AdvisoryNotice advisoryNotice);
 
     int deleteById(Long id);
 }

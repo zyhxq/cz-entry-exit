@@ -2,6 +2,7 @@ package com.lx.springboot.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.lx.springboot.Enums.TypeEnum;
 import com.lx.springboot.entity.AdvisoryNotice;
 import com.lx.springboot.entity.UserInfo;
 import com.lx.springboot.service.AdvisoryNoticeService;
@@ -20,19 +21,22 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = {"/advisoryNotice"})
-public class AdvisoryNoticeController {
+@RequestMapping(value = {"/guidWork"})
+public class GuidWorkController {
 
     @Autowired
     private AdvisoryNoticeService advisoryNoticeService;
 
-    @RequestMapping(value = {"/queryNotice"})
+    @RequestMapping(value = {"/queryGuid"})
     @ResponseBody
-    public List<AdvisoryNotice> queryNotice(@RequestBody AdvisoryNotice advisoryNotice){
+    public List<AdvisoryNotice> queryGuid(@RequestBody AdvisoryNotice advisoryNotice){
         List<AdvisoryNotice> noticeList=new ArrayList<AdvisoryNotice>();
         try{
             log.info("AdvisoryNoticeController queryNotice advisoryNotice:"+JSONObject.toJSONString(advisoryNotice));
-            noticeList=advisoryNoticeService.getAllAdvisoryNotice();
+            advisoryNotice.setStart(0);
+            advisoryNotice.setEnd(5);
+            advisoryNotice.setType(TypeEnum.GUID.getModelType());
+            noticeList=advisoryNoticeService.getAdvisoryNoticeByParam(advisoryNotice);
         }catch(Exception e){
             log.error("AdvisoryNoticeController queryNotice is error",e);
         }

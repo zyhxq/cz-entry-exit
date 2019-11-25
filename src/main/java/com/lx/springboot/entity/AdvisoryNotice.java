@@ -5,10 +5,10 @@ import java.util.Date;
 
 /**
  * <p>
- * 申请人信息
+ * 咨询公告信息
  * </p>
  */
-public class UserInfo implements Serializable {
+public class AdvisoryNotice implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,23 +17,11 @@ public class UserInfo implements Serializable {
      */
     private Integer   id ;
 
-    private String alipayId;
+    private String title;//标题
 
-    private String   namef ;// '中文姓',
+    private String   contentDetail ;// 详细内容
 
-    private String   namel ;// '中文名',
-
-    private String   namepinf ;// '拼音姓',
-
-    private String   namepinl  ;//'拼音名',
-
-    private Integer   gender ;// '1男，0女',
-
-    private String   nation  ;// '民族',
-
-    private String 	phone;// '手机号',
-
-    private Date birthday;// '生日',
+    private String   type ;// 类型
 
     private Date createTime;
 
@@ -41,21 +29,9 @@ public class UserInfo implements Serializable {
 
     private Integer   isValid ;// '是否有效1：有效 0：无效',
 
-    private String 	idType;// '证件类型',
+    private Integer   start ;
 
-    private String 	idNo;// '证件号码',
-
-    private String 	contactName;// '紧急联系人',
-
-    private String 	contactPhone;// '紧急联系人手机',
-
-    private String 	pickType;//'取件方式'
-
-    private String 	consigneeName;//'收件人姓名'
-
-    private String 	consigneePhone;//'收件人手机'
-
-    private String 	consigneeAdress;//'收件人地址'
+    private Integer   end ;
 
     public Integer getId() {
         return id;
@@ -65,68 +41,20 @@ public class UserInfo implements Serializable {
         this.id = id;
     }
 
-    public String getNamef() {
-        return namef;
+    public String getTitle() {
+        return title;
     }
 
-    public void setNamef(String namef) {
-        this.namef = namef;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getNamel() {
-        return namel;
+    public String getContentDetail() {
+        return contentDetail;
     }
 
-    public void setNamel(String namel) {
-        this.namel = namel;
-    }
-
-    public String getNamepinf() {
-        return namepinf;
-    }
-
-    public void setNamepinf(String namepinf) {
-        this.namepinf = namepinf;
-    }
-
-    public String getNamepinl() {
-        return namepinl;
-    }
-
-    public void setNamepinl(String namepinl) {
-        this.namepinl = namepinl;
-    }
-
-    public Integer getGender() {
-        return gender;
-    }
-
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
-
-    public String getNation() {
-        return nation;
-    }
-
-    public void setNation(String nation) {
-        this.nation = nation;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setContentDetail(String contentDetail) {
+        this.contentDetail = contentDetail;
     }
 
     public Date getCreateTime() {
@@ -153,102 +81,42 @@ public class UserInfo implements Serializable {
         this.isValid = isValid;
     }
 
-    public String getIdType() {
-        return idType;
+    public Integer getStart() {
+        return start;
     }
 
-    public void setIdType(String idType) {
-        this.idType = idType;
+    public void setStart(Integer start) {
+        this.start = start;
     }
 
-    public String getIdNo() {
-        return idNo;
+    public Integer getEnd() {
+        return end;
     }
 
-    public void setIdNo(String idNo) {
-        this.idNo = idNo;
+    public void setEnd(Integer end) {
+        this.end = end;
     }
 
-    public String getContactName() {
-        return contactName;
+    public String getType() {
+        return type;
     }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    public String getContactPhone() {
-        return contactPhone;
-    }
-
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
-    }
-
-    public String getPickType() {
-        return pickType;
-    }
-
-    public void setPickType(String pickType) {
-        this.pickType = pickType;
-    }
-
-    public String getConsigneeName() {
-        return consigneeName;
-    }
-
-    public void setConsigneeName(String consigneeName) {
-        this.consigneeName = consigneeName;
-    }
-
-    public String getConsigneePhone() {
-        return consigneePhone;
-    }
-
-    public void setConsigneePhone(String consigneePhone) {
-        this.consigneePhone = consigneePhone;
-    }
-
-    public String getConsigneeAdress() {
-        return consigneeAdress;
-    }
-
-    public void setConsigneeAdress(String consigneeAdress) {
-        this.consigneeAdress = consigneeAdress;
-    }
-
-    public String getAlipayId() {
-        return alipayId;
-    }
-
-    public void setAlipayId(String alipayId) {
-        this.alipayId = alipayId;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return "UserInfo{" +
+        return "AdvisoryNotice{" +
                 "id=" + id +
-                ", alipayId='" + alipayId + '\'' +
-                ", namef='" + namef + '\'' +
-                ", namel='" + namel + '\'' +
-                ", namepinf='" + namepinf + '\'' +
-                ", namepinl='" + namepinl + '\'' +
-                ", gender=" + gender +
-                ", nation='" + nation + '\'' +
-                ", phone='" + phone + '\'' +
-                ", birthday=" + birthday +
+                ", title='" + title + '\'' +
+                ", contentDetail='" + contentDetail + '\'' +
+                ", type='" + type + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", isValid=" + isValid +
-                ", idType='" + idType + '\'' +
-                ", idNo='" + idNo + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", contactPhone='" + contactPhone + '\'' +
-                ", pickType='" + pickType + '\'' +
-                ", consigneeName='" + consigneeName + '\'' +
-                ", consigneePhone='" + consigneePhone + '\'' +
-                ", consigneeAdress='" + consigneeAdress + '\'' +
+                ", start=" + start +
+                ", end=" + end +
                 '}';
     }
 }

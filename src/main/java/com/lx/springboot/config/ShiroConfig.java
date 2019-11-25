@@ -45,6 +45,8 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/**/userInfo/**", "anon");// 获取用户匿名访问
+        filterChainDefinitionMap.put("/**/advisoryNotice/**", "anon");// 获取咨询公告匿名访问
+        filterChainDefinitionMap.put("/**/guidWork/**", "anon");// 获取办事指引匿名访问
         filterChainDefinitionMap.put("/static/**", "anon"); // 静态资源匿名访问
         filterChainDefinitionMap.put("/bootstrap/**", "anon"); // 静态资源匿名访问
         filterChainDefinitionMap.put("/css/**", "anon"); // 静态资源匿名访问

@@ -2,8 +2,10 @@ package com.lx.springboot.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.lx.springboot.Enums.TypeEnum;
+import com.lx.springboot.entity.AdvisoryNotice;
 import com.lx.springboot.entity.UserInfo;
-import com.lx.springboot.service.UserInfoService;
+import com.lx.springboot.service.AdvisoryNoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,59 +19,62 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = {"/userInfo"})
+@RequestMapping(value = {"/advisoryNotice"})
 public class AdvisoryNoticeController {
 
     @Autowired
-    private UserInfoService userInfoService;
+    private AdvisoryNoticeService advisoryNoticeService;
 
-    @RequestMapping(value = {"/addUserInfo"})
+    @RequestMapping(value = {"/addNotice"})
     @ResponseBody
-    public String addUserInfo(@RequestBody UserInfo userInfo){
+    public String addAdvisoryNotice(@RequestBody AdvisoryNotice advisoryNotice){
         try{
-            log.info("UserInfoController addUserInfo userInfo:"+JSONObject.toJSONString(userInfo));
-            Integer i = userInfoService.addUserInfo(userInfo);
+            log.info("AdvisoryNoticeController.addAdvisoryNotice advisoryNotice:"+JSONObject.toJSONString(advisoryNotice));
+            Integer i = advisoryNoticeService.addAdvisoryNotice(advisoryNotice);
         }catch(Exception e){
             log.error("UserInfoController addUserInfo is error",e);
         }
         return "success";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/getAllUserInfo"})
+    @RequestMapping(method = RequestMethod.POST, value = {"/getAllAdvisoryNotice"})
     @ResponseBody
-    public String getAllUserInfo(){
-        List<UserInfo> userInfoList=null;
+    public String getAllAdvisoryNotice(){
+        List<AdvisoryNotice> advisoryNoticeList=null;
         try{
-            log.info("UserInfoController getAllUserInfo start");
-            userInfoList = userInfoService.getAllUserInfo();
+            log.info("AdvisoryNoticeController.addAdvisoryNotice start");
+            advisoryNoticeList = advisoryNoticeService.getAllAdvisoryNotice();
         }catch(Exception e){
-            log.error("UserInfoController getAllUserInfo is error",e);
+            log.error("AdvisoryNoticeController.addAdvisoryNotice is error",e);
         }
-        return JSONObject.toJSONString(userInfoList);
+        return JSONObject.toJSONString(advisoryNoticeList);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/getUserInfoByParam"})
+    @RequestMapping(method = RequestMethod.POST, value = {"/getAdvisoryNoticeByParam"})
     @ResponseBody
-    public List<UserInfo> getUserInfoByParam(@RequestBody UserInfo userInfo){
-        List<UserInfo> userInfoList=null;
+    public List<AdvisoryNotice> getAdvisoryNoticeByParam(@RequestBody AdvisoryNotice advisoryNotice){
+        List<AdvisoryNotice> advisoryNoticeList=null;
         try{
-            log.info("UserInfoController getUserInfoByParam start userInfo:"+JSONObject.toJSONString(userInfo));
-            userInfoList = userInfoService.getUserInfoByParam(userInfo);
+            log.info("AdvisoryNoticeController.getAdvisoryNoticeByParam start advisoryNotice:"+JSONObject.toJSONString(advisoryNotice));
+            advisoryNotice.setStart(0);
+            advisoryNotice.setEnd(5);
+            advisoryNotice.setType(TypeEnum.NOTICE.getModelType());
+            advisoryNoticeList = advisoryNoticeService.getAdvisoryNoticeByParam(advisoryNotice);
         }catch(Exception e){
-            log.error("UserInfoController getUserInfoByParam is error userInfo:"+JSONObject.toJSONString(userInfo),e);
+            log.error("AdvisoryNoticeController.getAdvisoryNoticeByParam is error userInfo:"+JSONObject.toJSONString(advisoryNotice),e);
         }
-        log.info("UserInfoController getUserInfoByParam is success");
-        return userInfoList;
+        log.info("AdvisoryNoticeController.getAdvisoryNoticeByParam is success");
+        return advisoryNoticeList;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = {"/deleteById"})
     @ResponseBody
     public String deleteById(Long id){
         try{
-            log.info("UserInfoController deleteById start id:"+id);
-            Integer i = userInfoService.deleteById(id);
+            log.info("AdvisoryNoticeController deleteById start id:"+id);
+            Integer i = advisoryNoticeService.deleteById(id);
         }catch(Exception e){
-            log.error("UserInfoController deleteById is error id:"+id,e);
+            log.error("AdvisoryNoticeController.deleteById is error id:"+id,e);
         }
         return "success";
     }
