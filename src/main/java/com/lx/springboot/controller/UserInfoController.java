@@ -26,13 +26,17 @@ public class UserInfoController {
     @RequestMapping(value = {"/addUserInfo"})
     @ResponseBody
     public String addUserInfo(@RequestBody UserInfo userInfo){
+        JSONObject json=new JSONObject();
         try{
             log.info("UserInfoController addUserInfo userInfo:"+JSONObject.toJSONString(userInfo));
             Integer i = userInfoService.addUserInfo(userInfo);
+            json.put("id",i);
         }catch(Exception e){
+            json.put("success",false);
             log.error("UserInfoController addUserInfo is error",e);
         }
-        return "success";
+        json.put("success",true);
+        return json.toJSONString();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = {"/getAllUserInfo"})
