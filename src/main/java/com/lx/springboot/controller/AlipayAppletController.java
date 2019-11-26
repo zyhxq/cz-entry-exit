@@ -39,7 +39,7 @@ public class AlipayAppletController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(method = RequestMethod.GET,value = {"/auth"})
+    @RequestMapping(value = {"/auth"})
     @ResponseBody
     public AlipayAppletAuthResponse auth(@RequestBody AlipayAppletAuthRequest alipayAppletAuthRequest) {
         log.info("AlipayAppletController auth alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
@@ -78,7 +78,7 @@ public class AlipayAppletController {
         return alipayAppletAuthResponse;
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = {"/queryPhone"})
+    @RequestMapping(value = {"/queryPhone"})
     @ResponseBody
     public String queryPhone(@RequestBody String request) {
         log.info("AlipayAppletController queryPhone request:" + request);
