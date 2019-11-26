@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping(value = {"/userInfo"})
 public class UserInfoController {
 
+
     @Autowired
     private UserInfoService userInfoService;
 
