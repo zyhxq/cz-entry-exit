@@ -46,6 +46,7 @@ public class UserInfoController {
         List<UserInfo> userInfoList=null;
         try{
             log.info("UserInfoController getAllUserInfo start");
+            int i=1/0;
             userInfoList = userInfoService.getAllUserInfo();
         }catch(Exception e){
             log.error("UserInfoController getAllUserInfo is error",e);
