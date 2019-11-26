@@ -39,10 +39,10 @@ public class AlipayAppletController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(value = {"/auth"})
+    @RequestMapping(method = RequestMethod.GET,value = {"/auth"})
     @ResponseBody
-    public AlipayAppletAuthResponse addUserInfo(@RequestBody AlipayAppletAuthRequest alipayAppletAuthRequest) {
-        log.info("AlipayAppletController addUserInfo alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
+    public AlipayAppletAuthResponse auth(@RequestBody AlipayAppletAuthRequest alipayAppletAuthRequest) {
+        log.info("AlipayAppletController auth alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
         //AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do","app_id","your private_key","json","GBK","alipay_public_key","RSA2");
         AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", "2019111769178855", "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCVtP3dAk53VeHaRPoiz6QgyhsL7W78dk2vzZltLRtPnUjz4E3Cz5JIE7Kh4qJosBlkdvCBU9YmdBjXvpp24lvH3Fa30GjuCwgc37W0w9KFp9pVhpvyjU45shPa48kTRDCTcf8PeUMx7mR9lsEsdO+GSYvsCk6BAc6xi5SWNDeRKkbC3qq4OVwWO8OBKCD0E3C/Mm9CJvMPNfoEsWyl/FMqMrs/ZZ4WveeEgWilTJAauHwHkM05NMVsvSBqzyLUYgH1SCAgEHhvYaOp0kESV10SFGvHQwUuAPgOeNInigfIxnYxSy4EvznEuV1D89tOUhsK6xPBleH/8/jP5leOmCKHAgMBAAECggEABUuHhx+jwtjIyj2SU1Tgy0AawMs/F7LfgI5XFON5idFYWTffyDorRF1d/hfUArvnygPi8dATTPziPA9Dy1yqPmFut8WpUHIXcV4AQUqD0bJkKI5ASc3xrFy+EwnnfMT2quBnUxbI56U07LQ+VOI17pv/VPPwXuO/ecwkD0P9iybTzC1TVUX1ihepz7KT576ciGY3AI3OAkL1uUmk9gHC1BL3bYKnDZsM53y9ukHSxfUGRBw/DhZlxLz6iiI5dlwzT0e8Xbzm7lVUjdaJtf+0c2BAnu83HlYKXsIUwN4LooLyzzeM/GmyJj8miP8V/Hrft7F3HfStTbot8Zz94SlTkQKBgQDHCOqB6cRAV6LEtXWibnQzQ6bYUzyuOpe5k0LVPOgLzXUWMePE5HdGJSDUTIQPwG5pnyptwkZZFSEviwLWOZpp+iP8+/hSAExuQhEOtdiO+MsfGrVJsIimGtFJm6NzTUl3qBVpZ5h1UrgDt66nE6IY8jcj2a1ZOLdoHfxvBPjIXQKBgQDAjd/kfQfnY+drGPZZKFqEDXbkmR/hbVw10EJjUj+zK4HXXFo/p/5YpMXUSrJMsOWL/MZTuJfaqCXZjxep+OlsvvJB5sU/CTpweNzbRnjKqow5/TFmDx9yxlL9ghgAbmRUqTKnPafrjCV831zzVqTxPznr/nX6tS53GIUFrUWYMwKBgFS5zOoEkxA4vgcyn6LHlhuEfu+zby9TrebHcznGtZjgmykZj7Xu838eqvz0nXr/FYFMygjzHHMrdXcBm/GJj9vxKYS11h1CF0cQRKaYblleO0lAW0/FIEZlQBYvdMLOcanIGWVHPjUjQ0YB2Q0yZFxuL17JeOt0I07lBOJVoXnZAoGAGcIg5FDxgLu1lncVZWHnkei3MedmA2L8xdohN2YmTVKRoPyiugdAGB2atUZ0yZuUaYCcC1ETR1XdElh5AuzgVQLKJ5S2aDNU1PzmFpM7z2i3L362X/+/5juvmGgRy+T4mPa1ZvfxgaoSzbyXk5nQoNEjb3Vv1OTt3VKzYMoIGE8CgYAgcKCUkGPZ+ckoB+gzA18nUa4IHwWILzn3YV3NI7izxTO42i3/xwd7EgDz1MNdl7OT3c/tshtXxVWYqnjTORPthgUljfFEQ/cGfFmSNtEUKESrDEB+6iekI/HBIOcrL5nHHFpjgMmbyhMUY8kSUCviYESqJB42OnKbRCbuf2ahGg==", "json", "GBK", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkFRN+aJCedDRtznGWfj3aDAA1YpXdEOpB/AWz39GjHLSmCqSB9bidrqSpD62DOUFg3uoWSvsIQFzyCWTkrQz+oOiA6y8xiRSdYuRoh0bjUu5xeA9TPV6qURptrJh8xDFfnVpX6gub4+lp5KOLRqYPavnfzydRJehbWlbQXwsB//odW20vwEvGncYCos9kCbms0tyju/0a+FPcVeHY94w49K/wic3RFqZ8A8ZqFjtpQb8MyzsJq1DcqyU58tdsyjrlIsFA7eClfjyi1i/58nSJbldZNqDmNfGlz6cxePgvn3aHT5A3OVt80E3BcomhWZ+MdqQPpluvGWAEqbATvbqRwIDAQAB", "RSA2");
         AlipaySystemOauthTokenRequest request = new AlipaySystemOauthTokenRequest();
@@ -64,21 +64,21 @@ public class AlipayAppletController {
         try {
             response = alipayClient.execute(request);
         } catch (Exception e) {
-            log.error("AlipayAppletController addUserInfo is error alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest), e);
+            log.error("AlipayAppletController auth is error alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest), e);
         }
         if (null != response && response.isSuccess()) {
-            log.info("AlipayAppletController addUserInfo is success alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
+            log.info("AlipayAppletController auth is success alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
             EnhanceBeanUtils.copyProperties(response, alipayAppletAuthResponse);
             alipayAppletAuthResponse.setSuccess(true);
         } else {
             alipayAppletAuthResponse.setSuccess(false);
-            log.info("AlipayAppletController addUserInfo is fail alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
+            log.info("AlipayAppletController auth is fail alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest));
         }
-        log.info("AlipayAppletController addUserInfo success alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest) + ",memberAuthResponse:" + JSONObject.toJSONString(alipayAppletAuthResponse));
+        log.info("AlipayAppletController auth success alipayAppletAuthRequest:" + JSONObject.toJSONString(alipayAppletAuthRequest) + ",memberAuthResponse:" + JSONObject.toJSONString(alipayAppletAuthResponse));
         return alipayAppletAuthResponse;
     }
 
-    @RequestMapping(value = {"/queryPhone"})
+    @RequestMapping(method = RequestMethod.GET,value = {"/queryPhone"})
     @ResponseBody
     public String queryPhone(@RequestBody String request) {
         log.info("AlipayAppletController queryPhone request:" + request);

@@ -24,7 +24,7 @@ public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(value = {"/addUserInfo"})
+    @RequestMapping(method = RequestMethod.GET,value = {"/addUserInfo"})
     @ResponseBody
     public String addUserInfo(@RequestBody UserInfo userInfo){
         JSONObject json=new JSONObject();
@@ -40,7 +40,7 @@ public class UserInfoController {
         return json.toJSONString();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/getAllUserInfo"})
+    @RequestMapping(method = RequestMethod.GET, value = {"/getAllUserInfo"})
     @ResponseBody
     public String getAllUserInfo(){
         List<UserInfo> userInfoList=null;
@@ -53,7 +53,7 @@ public class UserInfoController {
         return JSONObject.toJSONString(userInfoList);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/getUserInfoByParam"})
+    @RequestMapping(method = RequestMethod.GET, value = {"/getUserInfoByParam"})
     @ResponseBody
     public List<UserInfo> getUserInfoByParam(@RequestBody UserInfo userInfo){
         List<UserInfo> userInfoList=null;
@@ -67,7 +67,7 @@ public class UserInfoController {
         return userInfoList;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/deleteById"})
+    @RequestMapping(method = RequestMethod.GET, value = {"/deleteById"})
     @ResponseBody
     public String deleteById(Long id){
         try{
